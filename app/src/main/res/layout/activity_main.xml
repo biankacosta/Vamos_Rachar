@@ -8,27 +8,31 @@
 
     <TextView
         android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="60dp"
-        android:text="Vamos Rachar!"
-        android:textSize="24sp"
+        android:layout_width="300dp"
+        android:layout_height="62dp"
+        android:fontFamily="@font/adlam_display"
+        android:gravity="center"
+        android:text="@string/app_name"
+        android:textSize="40sp"
         app:layout_constraintBottom_toTopOf="@+id/valorConta"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.845" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/shareActionButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="83dp"
+        android:layout_marginEnd="76dp"
+        android:layout_marginBottom="80dp"
         android:clickable="true"
         android:importantForAccessibility="no"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.698"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/showResult"
+        app:layout_constraintVertical_bias="1.0"
         app:srcCompat="?attr/actionModeShareDrawable" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -40,7 +44,7 @@
         android:importantForAccessibility="no"
         android:onClick="clickFalar"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/shareActionButton"
         app:layout_constraintHorizontal_bias="0.301"
         app:layout_constraintStart_toStartOf="parent"
         app:srcCompat="@android:drawable/ic_lock_silent_mode_off" />
@@ -49,53 +53,53 @@
         android:id="@+id/numPessoas"
         android:layout_width="208dp"
         android:layout_height="62dp"
+        android:layout_marginBottom="312dp"
         android:ems="10"
-        android:hint="Número de pessoas"
+        android:hint="@string/text_numPessoas"
         android:inputType="number"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.724"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.536" />
+        app:layout_constraintHorizontal_bias="0.194"
+        app:layout_constraintStart_toEndOf="@+id/imageNumPessoas" />
 
     <EditText
         android:id="@+id/valorConta"
         android:layout_width="210dp"
         android:layout_height="62dp"
+        android:layout_marginBottom="8dp"
         android:ems="10"
-        android:hint="Valor da conta"
+        android:hint="@string/text_valorConta"
         android:inputType="number"
         app:layout_constraintBottom_toTopOf="@+id/numPessoas"
+
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.731"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintHorizontal_bias="0.171"
+        app:layout_constraintStart_toEndOf="@+id/imageValorConta"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.969" />
+        app:layout_constraintVertical_bias="0.954" />
 
     <ImageView
         android:id="@+id/imageValorConta"
         android:layout_width="63dp"
         android:layout_height="60dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/valorConta"
-        app:layout_constraintHorizontal_bias="0.654"
+        android:layout_marginStart="68dp"
+        android:contentDescription="Uma nota de dinheiro da cor verde, com três moedas douradas abaixo"
+        app:layout_constraintBottom_toTopOf="@+id/numPessoas"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.429"
-        tools:srcCompat="@tools:sample/avatars" />
+        app:layout_constraintTop_toBottomOf="@+id/textView"
+        app:layout_constraintVertical_bias="0.791"
+        app:srcCompat="@drawable/dinheiro" />
 
     <ImageView
         android:id="@+id/imageNumPessoas"
         android:layout_width="63dp"
         android:layout_height="60dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/numPessoas"
-        app:layout_constraintHorizontal_bias="0.654"
+        android:layout_marginStart="68dp"
+        android:layout_marginTop="20dp"
+        android:contentDescription="Três pessoas do busto para cima, com o rosto sem detalhes"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageValorConta"
-        app:layout_constraintVertical_bias="0.04"
-        tools:srcCompat="@tools:sample/avatars" />
+        app:srcCompat="@drawable/pessoas" />
 
     <TextView
         android:id="@+id/showResult"
@@ -106,7 +110,7 @@
         android:autoSizeMinTextSize="20dp"
         android:autoSizeStepGranularity="2dp"
         android:autoSizeTextType="uniform"
-        android:text="Resultado aqui!"
+        android:text="@string/result_default"
         android:textAlignment="center"
         android:textSize="14sp"
         app:layout_constraintBottom_toTopOf="@+id/speakActionButton"

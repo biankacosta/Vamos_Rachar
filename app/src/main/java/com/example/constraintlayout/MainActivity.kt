@@ -35,7 +35,7 @@ class MainActivity : AppCompatActivity() , TextWatcher, TextToSpeech.OnInitListe
         valorConta.addTextChangedListener(this)
         numPessoas.addTextChangedListener(this)
 
-        showResult.text = "Resultado aqui!"
+        showResult.text = getString(R.string.result_default)
 
         tts = TextToSpeech(this, this)
 
@@ -52,13 +52,13 @@ class MainActivity : AppCompatActivity() , TextWatcher, TextToSpeech.OnInitListe
         val numPessoas = numPessoas.text.toString().toIntOrNull()
 
         if (totalValor == null || numPessoas == null || numPessoas <= 0) {
-            showResult.text = "Insira valores válidos"
+            showResult.text = getString(R.string.error_empty_values)
             return
         }
 
         val result = totalValor / numPessoas
 
-        showResult.text = "Cada pessoa deve pagar: R$ %.2f".format(result)
+        showResult.text = getString(R.string.result_message, result)
     }
 
     override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
@@ -79,7 +79,6 @@ class MainActivity : AppCompatActivity() , TextWatcher, TextToSpeech.OnInitListe
         if(s.toString().length>0) {
              valor = s.toString().toDouble()
             Log.d("PDM24", "v: " + valor)
-        //    edtConta.setText("9")
         }
     }
 
@@ -92,8 +91,8 @@ class MainActivity : AppCompatActivity() , TextWatcher, TextToSpeech.OnInitListe
         if(ttsSucess) {
             val resultText = showResult.text.toString()
 
-            if (resultText.isBlank() || resultText == "Insira valores válidos" || resultText == "Resultado aqui!") {
-                Toast.makeText(this, "Calcula que eu falo!", Toast.LENGTH_SHORT).show()
+            if (resultText.isBlank() || resultText == getString(R.string.error_empty_values) || resultText == getString(R.string.result_default)) {
+                Toast.makeText(this, getString(R.string.error_speak), Toast.LENGTH_SHORT).show()
                 return
             } else {
                 Log.d ("PDM23", tts.language.toString())
@@ -104,14 +103,14 @@ class MainActivity : AppCompatActivity() , TextWatcher, TextToSpeech.OnInitListe
 
     fun compartilharResultado (resultText: String) {
 
-            if (resultText.isBlank() || resultText == "Insira valores válidos" || resultText == "Resultado aqui!") {
-                Toast.makeText(this, "Você não calculou, não tem como compartilhar!", Toast.LENGTH_SHORT).show()
+            if (resultText.isBlank() || resultText == getString(R.string.error_empty_values) || resultText == getString(R.string.result_default)) {
+                Toast.makeText(this, getString(R.string.error_share), Toast.LENGTH_SHORT).show()
                 return
             }
 
             val shareIntent = Intent().apply {
                 action = Intent.ACTION_SEND
-                putExtra(Intent.EXTRA_TEXT, "Saiu o resultado! $resultText")
+                putExtra(Intent.EXTRA_TEXT, "${getString(R.string.result_base)} $resultText")
                 type = "text/plain"
             }
 
@@ -120,7 +119,6 @@ class MainActivity : AppCompatActivity() , TextWatcher, TextToSpeech.OnInitListe
     }
 
     override fun onDestroy() {
-            // Release TTS engine resources
             tts.stop()
             tts.shutdown()
             super.onDestroy()
@@ -128,12 +126,10 @@ class MainActivity : AppCompatActivity() , TextWatcher, TextToSpeech.OnInitListe
 
     override fun onInit(status: Int) {
             if (status == TextToSpeech.SUCCESS) {
-                // TTS engine is initialized successfully
                 tts.language = Locale.getDefault()
                 ttsSucess=true
                 Log.d("PDM23","Sucesso na Inicialização")
             } else {
-                // TTS engine failed to initialize
                 Log.e("PDM23", "Failed to initialize TTS engine.")
                 ttsSucess=false
             }

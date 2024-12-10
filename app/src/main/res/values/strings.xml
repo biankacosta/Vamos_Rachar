@@ -1,3 +1,11 @@
 <resources>
-    <string name="app_name">Constraint Layout</string>
+    <string name="app_name">Vamos Rachar!</string>
+    <string name="result_default">Resultado aqui!</string>
+    <string name="error_empty_values">Insira valores válidos!</string>
+    <string name="error_share">Você não calculou, não tem como compartilhar!</string>
+    <string name="error_speak">Calcula que eu falo!</string>
+    <string name="result_base">Saiu o resultado!</string>
+    <string name="result_message">Cada pessoa deve pagar: R$ %.2f</string>
+    <string name="text_valorConta">Valor da conta</string>
+    <string name="text_numPessoas">Número de pessoas</string>
 </resources>
